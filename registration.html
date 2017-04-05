@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration</title>
+    <meta charset="UTF-8">
+    <meta name="author" content="Brandon Long">
+    <script src="https://code.jquery.com/jquery-1.9.1.js" type='text/javascript'>
+
+        // Complete function on form submission
+        $("#form").submit(function(event) {
+            // prevent default form action on submission
+            event.preventDefault();
+            // pull data from form for post
+            var $form = $( this ),
+                    url = $form.attr( 'action' );
+            // post token and repo in jSON format
+            var posting = $.post( url, { token: $('#token').val(), github: $('#github').val()}, function( data ) {
+                alert('success');
+            });
+        });
+
+    </script>
+</head>
+<body>
+
+<!-- Form for token and github repo submission -->
+
+<form id="form" action="http://challenge.code2040.org/api/register" title="" method="post">
+    <div>
+        <label class="title">Token</label>
+        <input type="text" id="token" name="token" >
+        <label class="title">GitHub</label>
+        <input type="text" id="github" name="github" >
+    </div>
+    <div>
+        <input type="submit" id="submit"  name="submit" value="Submit">
+    </div>
+</form>
+</body>
+</html>
